@@ -1,156 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Sheez Lu - Demo</title>
+  <meta charset="UTF-8">
+  <title>Sheez Lu - Demo Layout</title>
   <style>
-    /* ====== 基础排版 ====== */
-    body {
-      margin: 0;
+    /* 重置和基础设置 */
+    * {
+      margin: 0; 
       padding: 0;
-      font-family: sans-serif;
-      display: flex; /* 整个页面横向分两部分：左侧导航 + 右侧内容 */
-      background: #fff;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #fff;
       color: #000;
+      line-height: 1.5;
     }
 
-    /* ====== 左侧导航区 ====== */
+    /* ===== 左侧导航样式 ===== */
     .sidebar {
-      width: 20%;
-      min-width: 180px; /* 也可根据需要调整 */
-      background: #fafafa;
-      padding: 2rem 1rem;
-      box-sizing: border-box;
+      position: fixed;       /* 固定在屏幕左侧 */
+      top: 0;
+      left: 0;
+      width: 260px;         /* 导航栏宽度，可自行调整 */
+      height: 100vh;        /* 占满垂直高度 */
+      padding: 2rem;        /* 内边距 */
       border-right: 1px solid #ddd;
+      background: #fff;
     }
     .sidebar h1 {
-      margin: 0 0 2rem;
-      font-size: 1.8rem;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
     }
-    .sidebar ul {
+    /* 一些中文和英文混排的修饰 */
+    .sidebar h1 small {
+      font-size: 1rem;
+      color: #555;
+      margin-left: 0.5rem;
+      font-weight: normal;
+    }
+
+    /* 菜单列表 */
+    .nav-list {
       list-style: none;
-      padding: 0;
-      margin: 0;
-      line-height: 2;
+      margin-top: 1.5rem;
     }
-    .sidebar li {
+    .nav-list li {
+      margin-bottom: 0.75rem;
       cursor: pointer;
+      font-size: 1rem;
+      color: #333;
+      transition: color 0.2s ease;
     }
-    .sidebar li:hover {
-      text-decoration: underline;
+    .nav-list li:hover {
+      color: #000;
     }
-    /* “active”用来标记选中的栏目，字体加粗 */
-    .sidebar li.active {
+    .nav-list li.active {
       font-weight: bold;
     }
 
-    /* ====== 右侧主内容区 ====== */
-    .main-content {
-      flex: 1; 
-      padding: 2rem;
-      box-sizing: border-box;
-      overflow-y: auto;
+    /* 关于“About”下面的那两个图标区域 */
+    .sidebar .social {
+      margin-top: 3rem;
+    }
+    .sidebar .social a {
+      display: inline-block;
+      margin-right: 1rem;
+      text-decoration: none;
+      color: #333;
+      font-size: 1.2rem;
+    }
+    .sidebar .social a:hover {
+      color: #000;
     }
 
-    /* ====== 每个页面块（模拟不同页面） ====== */
+    /* ===== 右侧内容区域 ===== */
+    .main-content {
+      margin-left: 260px;  /* 留出左侧导航的宽度 */
+      padding: 2rem 3rem;  /* 右侧内容的内边距 */
+    }
+
+    /* 每个页面区块 */
     .page-section {
-      display: none; /* 默认先隐藏，点击菜单后再显示对应内容 */
+      display: none;
     }
     .page-section.active {
-      display: block; /* 激活状态下可见 */
+      display: block; /* 当前激活的才显示 */
     }
 
-    /* ====== 图片布局示例 ====== */
+    /* 示例中用到的标题样式 */
+    .page-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    /* gallery布局示例 */
     .gallery {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem; /* 图片之间的间距 */
     }
     .gallery img {
-      max-width: 250px;
+      max-width: 280px;
       border: 1px solid #ccc;
       border-radius: 4px;
+      display: block;
+    }
+
+    /* 特地针对Prints页面，下方再来一个大标题演示 */
+    .page-section.prints h3 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      font-weight: normal;
     }
   </style>
 </head>
 <body>
 
-  <!-- 左侧导航（Sidebar） -->
+  <!-- 左侧导航 -->
   <div class="sidebar">
-    <h1>SHEEZ LU</h1>
-    <ul id="navList">
-      <li data-target="illustration" class="active">Illustration</li>
-      <li data-target="sketchbook">Sketchbook</li>
-      <li data-target="prints-zine">Prints / Zine</li>
-      <li data-target="comic-doodle">Comic / Doodle</li>
-      <li data-target="about">About</li>
+    <h1>SHEEZ LU <small>卢希兹</small></h1>
+    <ul class="nav-list" id="navList">
+      <li data-target="illustration" class="active">Illustration 插图</li>
+      <li data-target="sketchbook">Sketchbook 写生</li>
+      <li data-target="prints-zine">Prints / Zine 版画 / 杂志</li>
+      <li data-target="comic-doodle">Comic / Doodle 漫画 / 涂鸦</li>
+      <li data-target="about">About 大约</li>
     </ul>
+
+    <!-- 底部图标示例 -->
+    <div class="social">
+      <a href="#" title="Instagram">IG</a>
+      <a href="#" title="Email">✉</a>
+    </div>
   </div>
 
-  <!-- 右侧主内容（Main Content） -->
+  <!-- 右侧主要内容区 -->
   <div class="main-content">
-    <!-- Illustration 区域 -->
+    <!-- Illustration 插图 -->
     <div id="illustration" class="page-section active">
-      <h2>Illustration</h2>
+      <h2>Illustration <small>插图</small></h2>
       <div class="gallery">
-        <img src="static/image/1.jpg" alt="Illustration 1" />
-        <img src="static/image/2.jpg" alt="Illustration 2" />
-        <img src="static/image/3.jpg" alt="Illustration 3" />
+        <img src="static/image/1.jpg" alt="Illustration 1">
+        <img src="static/image/2.jpg" alt="Illustration 2">
+        <img src="static/image/3.jpg" alt="Illustration 3">
       </div>
     </div>
 
-    <!-- Sketchbook 区域 -->
+    <!-- Sketchbook 写生 -->
     <div id="sketchbook" class="page-section">
-      <h2>Sketchbook</h2>
+      <h2>Sketchbook <small>写生</small></h2>
       <div class="gallery">
-        <img src="static/images/1.jpg" alt="Sketchbook 1" />
-        <img src="static/images/2.jpg" alt="Sketchbook 2" />
-        <img src="static/images/3.jpg" alt="Sketchbook 3" />
+        <img src="static/image/1.jpg" alt="Sketchbook 1">
+        <img src="static/image/2.jpg" alt="Sketchbook 2">
+        <img src="static/image/3.jpg" alt="Sketchbook 3">
       </div>
     </div>
 
-    <!-- Prints / Zine 区域 -->
-    <div id="prints-zine" class="page-section">
-      <h2>Prints / Zine</h2>
+    <!-- Prints / Zine 版画 / 杂志 -->
+    <div id="prints-zine" class="page-section prints">
+      <h2>Prints / Zine <small>版画 / 杂志</small></h2>
       <div class="gallery">
-        <img src="static/images/1.jpg" alt="Prints 1" />
-        <img src="static/images/2.jpg" alt="Prints 2" />
-        <img src="static/images/3.jpg" alt="Prints 3" />
+        <img src="static/image/1.jpg" alt="Prints 1">
+        <img src="static/image/2.jpg" alt="Prints 2">
+        <img src="static/image/3.jpg" alt="Prints 3">
+      </div>
+
+      <!-- 可以再来个大标题做分割，就像你截图中有个“> Print series & Zines”的感觉 -->
+      <h3>&gt; Print series &amp; Zines</h3>
+      <div class="gallery">
+        <img src="static/image/4.jpg" alt="Zine 1">
+        <img src="static/image/5.jpg" alt="Zine 2">
+        <img src="static/image/6.jpg" alt="Zine 3">
       </div>
     </div>
 
-    <!-- Comic / Doodle 区域 -->
+    <!-- Comic / Doodle 漫画 / 涂鸦 -->
     <div id="comic-doodle" class="page-section">
-      <h2>Comic / Doodle</h2>
+      <h2>Comic / Doodle <small>漫画 / 涂鸦</small></h2>
       <div class="gallery">
-        <img src="static/images/1.jpg" alt="Comic 1" />
-        <img src="static/images/2.jpg" alt="Comic 2" />
+        <img src="static/image/1.jpg" alt="Comic 1">
+        <img src="static/image/2.jpg" alt="Comic 2">
       </div>
     </div>
 
-    <!-- About 区域 -->
+    <!-- About 大约 -->
     <div id="about" class="page-section">
-      <h2>About</h2>
-      <p>此处可以放一些简要介绍内容。</p>
+      <h2>About <small>大约</small></h2>
+      <p>在这里放作者的简介或说明，也可以放联络方式等。</p>
     </div>
   </div>
 
-  <!-- 简易的JS，用来在单页间切换 -->
+  <!-- JS：点击左侧菜单，切换右侧内容区的显示 -->
   <script>
     const navItems = document.querySelectorAll('#navList li');
     const pages = document.querySelectorAll('.page-section');
 
     navItems.forEach(item => {
       item.addEventListener('click', () => {
-        // 1. 移除所有nav li的 active
+        // 移除所有active
         navItems.forEach(nav => nav.classList.remove('active'));
-        // 2. 当前点击项设为 active
-        item.classList.add('active');
-
-        // 3. 先把所有 .page-section 隐藏
         pages.forEach(page => page.classList.remove('active'));
-
-        // 4. 显示 与当前menu对应的那一个
+        // 给当前点击的菜单+active
+        item.classList.add('active');
+        // 显示对应id的page-section
         const targetId = item.dataset.target;
         document.getElementById(targetId).classList.add('active');
       });
