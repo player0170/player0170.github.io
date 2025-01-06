@@ -1,69 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QiongYu Liu</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <title>Sheez Lu - Demo</title>
+  <style>
+    /* ====== 基础排版 ====== */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      display: flex; /* 整个页面横向分两部分：左侧导航 + 右侧内容 */
+      background: #fff;
+      color: #000;
+    }
+
+    /* ====== 左侧导航区 ====== */
+    .sidebar {
+      width: 20%;
+      min-width: 180px; /* 也可根据需要调整 */
+      background: #fafafa;
+      padding: 2rem 1rem;
+      box-sizing: border-box;
+      border-right: 1px solid #ddd;
+    }
+    .sidebar h1 {
+      margin: 0 0 2rem;
+      font-size: 1.8rem;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      line-height: 2;
+    }
+    .sidebar li {
+      cursor: pointer;
+    }
+    .sidebar li:hover {
+      text-decoration: underline;
+    }
+    /* “active”用来标记选中的栏目，字体加粗 */
+    .sidebar li.active {
+      font-weight: bold;
+    }
+
+    /* ====== 右侧主内容区 ====== */
+    .main-content {
+      flex: 1; 
+      padding: 2rem;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+
+    /* ====== 每个页面块（模拟不同页面） ====== */
+    .page-section {
+      display: none; /* 默认先隐藏，点击菜单后再显示对应内容 */
+    }
+    .page-section.active {
+      display: block; /* 激活状态下可见 */
+    }
+
+    /* ====== 图片布局示例 ====== */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem; /* 图片之间的间距 */
+    }
+    .gallery img {
+      max-width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>QiongYu Liu</h1>
-            <nav>
-                <ul>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#installation">Installation</a></li>
-                    <li><a href="#examples">Examples</a></li>
-                    <li><a href="#contribute">Contribute</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <main>
-        <section id="features" class="section">
-            <div class="container">
-                <h2>Features</h2>
-                <p>Highlight the key features of your project here. Describe how it solves a problem or why it is useful.</p>
-                <ul>
-                    <li>Feature 1</li>
-                    <li>Feature 2</li>
-                    <li>Feature 3</li>
-                </ul>
-            </div>
-        </section>
+  <!-- 左侧导航（Sidebar） -->
+  <div class="sidebar">
+    <h1>SHEEZ LU</h1>
+    <ul id="navList">
+      <li data-target="illustration" class="active">Illustration</li>
+      <li data-target="sketchbook">Sketchbook</li>
+      <li data-target="prints-zine">Prints / Zine</li>
+      <li data-target="comic-doodle">Comic / Doodle</li>
+      <li data-target="about">About</li>
+    </ul>
+  </div>
 
-        <section id="installation" class="section">
-            <div class="container">
-                <h2>Installation</h2>
-                <pre><code>npm install your-package-name</code></pre>
-                <p>Provide installation instructions for users.</p>
-            </div>
-        </section>
+  <!-- 右侧主内容（Main Content） -->
+  <div class="main-content">
+    <!-- Illustration 区域 -->
+    <div id="illustration" class="page-section active">
+      <h2>Illustration</h2>
+      <div class="gallery">
+        <img src="static/images/1.jpg" alt="Illustration 1" />
+        <img src="static/images/2.jpg" alt="Illustration 2" />
+        <img src="static/images/3.jpg" alt="Illustration 3" />
+      </div>
+    </div>
 
-        <section id="examples" class="section">
-            <div class="container">
-                <h2>Examples</h2>
-                <p>Showcase some examples of how to use your project:</p>
-                <pre><code>console.log("Hello, World!");</code></pre>
-            </div>
-        </section>
+    <!-- Sketchbook 区域 -->
+    <div id="sketchbook" class="page-section">
+      <h2>Sketchbook</h2>
+      <div class="gallery">
+        <img src="static/images/1.jpg" alt="Sketchbook 1" />
+        <img src="static/images/2.jpg" alt="Sketchbook 2" />
+        <img src="static/images/3.jpg" alt="Sketchbook 3" />
+      </div>
+    </div>
 
-        <section id="contribute" class="section">
-            <div class="container">
-                <h2>Contribute</h2>
-                <p>Encourage contributions and provide guidelines:</p>
-                <pre><code>git clone https://github.com/your-repo.git</code></pre>
-                <p>Make sure to submit a pull request with your changes!</p>
-            </div>
-        </section>
-    </main>
+    <!-- Prints / Zine 区域 -->
+    <div id="prints-zine" class="page-section">
+      <h2>Prints / Zine</h2>
+      <div class="gallery">
+        <img src="static/images/1.jpg" alt="Prints 1" />
+        <img src="static/images/2.jpg" alt="Prints 2" />
+        <img src="static/images/3.jpg" alt="Prints 3" />
+      </div>
+    </div>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 QiongYu Liu. All rights reserved.</p>
-        </div>
-    </footer>
+    <!-- Comic / Doodle 区域 -->
+    <div id="comic-doodle" class="page-section">
+      <h2>Comic / Doodle</h2>
+      <div class="gallery">
+        <img src="static/images/1.jpg" alt="Comic 1" />
+        <img src="static/images/2.jpg" alt="Comic 2" />
+      </div>
+    </div>
+
+    <!-- About 区域 -->
+    <div id="about" class="page-section">
+      <h2>About</h2>
+      <p>此处可以放一些简要介绍内容。</p>
+    </div>
+  </div>
+
+  <!-- 简易的JS，用来在单页间切换 -->
+  <script>
+    const navItems = document.querySelectorAll('#navList li');
+    const pages = document.querySelectorAll('.page-section');
+
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        // 1. 移除所有nav li的 active
+        navItems.forEach(nav => nav.classList.remove('active'));
+        // 2. 当前点击项设为 active
+        item.classList.add('active');
+
+        // 3. 先把所有 .page-section 隐藏
+        pages.forEach(page => page.classList.remove('active'));
+
+        // 4. 显示 与当前menu对应的那一个
+        const targetId = item.dataset.target;
+        document.getElementById(targetId).classList.add('active');
+      });
+    });
+  </script>
+
 </body>
 </html>
