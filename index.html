@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <title>Sheez Lu - Demo Layout</title>
   <style>
-    /* 重置和基础设置 */
+    /* Reset and basic setup */
     * {
-      margin: 0; 
+      margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
@@ -17,30 +17,23 @@
       line-height: 1.5;
     }
 
-    /* ===== 左侧导航样式 ===== */
+    /* ===== Left Sidebar ===== */
     .sidebar {
-      position: fixed;       /* 固定在屏幕左侧 */
+      position: fixed;
       top: 0;
       left: 0;
-      width: 260px;         /* 导航栏宽度，可自行调整 */
-      height: 100vh;        /* 占满垂直高度 */
-      padding: 2rem;        /* 内边距 */
-      border-right: 1px solid #ddd;
+      width: 240px;       /* Adjust as needed */
+      height: 100vh;
+      padding: 2rem;
       background: #fff;
+      /* No border on the right */
     }
     .sidebar h1 {
-      font-size: 2rem;
+      font-size: 1.8rem;
       margin-bottom: 1.5rem;
     }
-    /* 一些中文和英文混排的修饰 */
-    .sidebar h1 small {
-      font-size: 1rem;
-      color: #555;
-      margin-left: 0.5rem;
-      font-weight: normal;
-    }
 
-    /* 菜单列表 */
+    /* Navigation list */
     .nav-list {
       list-style: none;
       margin-top: 1.5rem;
@@ -59,152 +52,180 @@
       font-weight: bold;
     }
 
-    /* 关于“About”下面的那两个图标区域 */
+    /* Social links at bottom of sidebar */
     .sidebar .social {
       margin-top: 3rem;
     }
     .sidebar .social a {
       display: inline-block;
-      margin-right: 1rem;
+      margin-right: 1.2rem;
       text-decoration: none;
       color: #333;
       font-size: 1.2rem;
+      transition: color 0.2s ease;
     }
     .sidebar .social a:hover {
       color: #000;
     }
 
-    /* ===== 右侧内容区域 ===== */
+    /* ===== Main content area ===== */
     .main-content {
-      margin-left: 260px;  /* 留出左侧导航的宽度 */
-      padding: 2rem 3rem;  /* 右侧内容的内边距 */
+      margin-left: 240px;  /* Reserve the sidebar space */
+      padding: 2rem 3rem;
     }
 
-    /* 每个页面区块 */
+    /* Sections hidden by default */
     .page-section {
       display: none;
     }
     .page-section.active {
-      display: block; /* 当前激活的才显示 */
+      display: block; /* Only active section is shown */
     }
 
-    /* 示例中用到的标题样式 */
     .page-section h2 {
-      font-size: 2rem;
+      font-size: 1.8rem;
       margin-bottom: 1rem;
     }
 
-    /* gallery布局示例 */
+    /* Gallery layout with figure captions */
     .gallery {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem; /* 图片之间的间距 */
+      gap: 1.5rem; /* Spacing between figures */
     }
-    .gallery img {
-      max-width: 280px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+    figure {
+      max-width: 300px;
+      text-align: center;
+    }
+    figure img {
+      width: 100%;
       display: block;
+      border-radius: 4px;
+      border: 1px solid #ccc;
     }
-
-    /* 特地针对Prints页面，下方再来一个大标题演示 */
-    .page-section.prints h3 {
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-      font-weight: normal;
+    figcaption {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #666;
     }
   </style>
 </head>
 <body>
 
-  <!-- 左侧导航 -->
+  <!-- Left sidebar -->
   <div class="sidebar">
-    <h1>SHEEZ LU <small>卢希兹</small></h1>
+    <h1>SHEEZ LU</h1>
     <ul class="nav-list" id="navList">
-      <li data-target="illustration" class="active">Illustration 插图</li>
-      <li data-target="sketchbook">Sketchbook 写生</li>
-      <li data-target="prints-zine">Prints / Zine 版画 / 杂志</li>
-      <li data-target="comic-doodle">Comic / Doodle 漫画 / 涂鸦</li>
-      <li data-target="about">About 大约</li>
+      <li data-target="illustration" class="active">Illustration</li>
+      <li data-target="sketchbook">Sketchbook</li>
+      <li data-target="prints-zine">Prints / Zine</li>
+      <li data-target="comic-doodle">Comic / Doodle</li>
+      <li data-target="about">About</li>
     </ul>
 
-    <!-- 底部图标示例 -->
+    <!-- Social links -->
     <div class="social">
-      <a href="#" title="Instagram">IG</a>
-      <a href="#" title="Email">✉</a>
+      <a href="https://instagram.com" target="_blank">Instagram</a>
+      <a href="mailto:xxx@example.com" target="_blank">Email</a>
     </div>
   </div>
 
-  <!-- 右侧主要内容区 -->
+  <!-- Main content -->
   <div class="main-content">
-    <!-- Illustration 插图 -->
+
+    <!-- Illustration -->
     <div id="illustration" class="page-section active">
-      <h2>Illustration <small>插图</small></h2>
+      <h2>Illustration</h2>
       <div class="gallery">
-        <img src="static/image/1.jpg" alt="Illustration 1">
-        <img src="static/image/2.jpg" alt="Illustration 2">
-        <img src="static/image/3.jpg" alt="Illustration 3">
+        <figure>
+          <img src="static/image/1.jpg" alt="Illustration 1" />
+          <figcaption>Short description for Illustration 1</figcaption>
+        </figure>
+        <figure>
+          <img src="static/image/2.jpg" alt="Illustration 2" />
+          <figcaption>Short description for Illustration 2</figcaption>
+        </figure>
+        <figure>
+          <img src="static/image/3.jpg" alt="Illustration 3" />
+          <figcaption>Short description for Illustration 3</figcaption>
+        </figure>
       </div>
     </div>
 
-    <!-- Sketchbook 写生 -->
+    <!-- Sketchbook -->
     <div id="sketchbook" class="page-section">
-      <h2>Sketchbook <small>写生</small></h2>
+      <h2>Sketchbook</h2>
       <div class="gallery">
-        <img src="static/image/1.jpg" alt="Sketchbook 1">
-        <img src="static/image/2.jpg" alt="Sketchbook 2">
-        <img src="static/image/3.jpg" alt="Sketchbook 3">
+        <figure>
+          <img src="static/image/1.jpg" alt="Sketchbook 1" />
+          <figcaption>Short description for Sketchbook 1</figcaption>
+        </figure>
+        <figure>
+          <img src="static/image/2.jpg" alt="Sketchbook 2" />
+          <figcaption>Short description for Sketchbook 2</figcaption>
+        </figure>
+        <figure>
+          <img src="static/image/3.jpg" alt="Sketchbook 3" />
+          <figcaption>Short description for Sketchbook 3</figcaption>
+        </figure>
       </div>
     </div>
 
-    <!-- Prints / Zine 版画 / 杂志 -->
-    <div id="prints-zine" class="page-section prints">
-      <h2>Prints / Zine <small>版画 / 杂志</small></h2>
+    <!-- Prints / Zine -->
+    <div id="prints-zine" class="page-section">
+      <h2>Prints / Zine</h2>
       <div class="gallery">
-        <img src="static/image/1.jpg" alt="Prints 1">
-        <img src="static/image/2.jpg" alt="Prints 2">
-        <img src="static/image/3.jpg" alt="Prints 3">
-      </div>
-
-      <!-- 可以再来个大标题做分割，就像你截图中有个“> Print series & Zines”的感觉 -->
-      <h3>&gt; Print series &amp; Zines</h3>
-      <div class="gallery">
-        <img src="static/image/4.jpg" alt="Zine 1">
-        <img src="static/image/5.jpg" alt="Zine 2">
-        <img src="static/image/6.jpg" alt="Zine 3">
+        <figure>
+          <img src="static/image/1.jpg" alt="Prints 1" />
+          <figcaption>Short description for Prints 1</figcaption>
+        </figure>
+        <figure>
+          <img src="static/image/2.jpg" alt="Prints 2" />
+          <figcaption>Short description for Prints 2</figcaption>
+        </figure>
+        <figure>
+          <img src="static/image/3.jpg" alt="Prints 3" />
+          <figcaption>Short description for Prints 3</figcaption>
+        </figure>
       </div>
     </div>
 
-    <!-- Comic / Doodle 漫画 / 涂鸦 -->
+    <!-- Comic / Doodle -->
     <div id="comic-doodle" class="page-section">
-      <h2>Comic / Doodle <small>漫画 / 涂鸦</small></h2>
+      <h2>Comic / Doodle</h2>
       <div class="gallery">
-        <img src="static/image/1.jpg" alt="Comic 1">
-        <img src="static/image/2.jpg" alt="Comic 2">
+        <figure>
+          <img src="static/image/1.jpg" alt="Comic 1" />
+          <figcaption>Short description for Comic 1</figcaption>
+        </figure>
+        <figure>
+          <img src="static/image/2.jpg" alt="Comic 2" />
+          <figcaption>Short description for Comic 2</figcaption>
+        </figure>
       </div>
     </div>
 
-    <!-- About 大约 -->
+    <!-- About -->
     <div id="about" class="page-section">
-      <h2>About <small>大约</small></h2>
-      <p>在这里放作者的简介或说明，也可以放联络方式等。</p>
+      <h2>About</h2>
+      <p>Some introduction or contact information here.</p>
     </div>
   </div>
 
-  <!-- JS：点击左侧菜单，切换右侧内容区的显示 -->
+  <!-- Simple JS to toggle sections -->
   <script>
     const navItems = document.querySelectorAll('#navList li');
     const pages = document.querySelectorAll('.page-section');
 
     navItems.forEach(item => {
       item.addEventListener('click', () => {
-        // 移除所有active
+        // Remove 'active' from all
         navItems.forEach(nav => nav.classList.remove('active'));
         pages.forEach(page => page.classList.remove('active'));
-        // 给当前点击的菜单+active
+
+        // Mark current item active
         item.classList.add('active');
-        // 显示对应id的page-section
+        // Show corresponding page
         const targetId = item.dataset.target;
         document.getElementById(targetId).classList.add('active');
       });
